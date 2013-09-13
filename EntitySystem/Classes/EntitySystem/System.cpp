@@ -8,8 +8,7 @@
 
 #include "System.h"
 System::System()
-:mEnabled(true)
-,mEntityManager(NULL)
+:mEntityManager(NULL)
 {
     
 }

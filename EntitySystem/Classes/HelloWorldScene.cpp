@@ -45,7 +45,8 @@ void HelloWorld::addGhosts()
     mHealthSystem=new HealthSystem();
     //mRenderSystem=new RenderComponent();
     mHealthSystem->initWithEntityManager(mEntityManager);
-    
+    mMoveSystem=new MoveSystem();
+    mMoveSystem->initWithEntityManager(mEntityManager);
     
     // ship
     CCSprite* shipSprite =CCSprite::create("Ghost/ship.png");
@@ -73,6 +74,7 @@ void HelloWorld::addGhosts()
     unit = mEntityManager->createEntity(std::string("Ghost/unit4"));
     mEntityManager->addComponentToEntity(new RenderComponent(unitSprite), unit);
     mEntityManager->addComponentToEntity(new HealthComponent(200,200),unit);
+    mEntityManager->addComponentToEntity((new MoveComponent())->initWithMoveTarget(ccp(200,200), 100, 100), unit);
 }
 
 
@@ -80,6 +82,7 @@ void HelloWorld::update(float delta)
 {
     //mRenderSystem->update(delta);
     mHealthSystem->update(delta);
+    mMoveSystem->update(delta);
 }
 
 void HelloWorld::draw()

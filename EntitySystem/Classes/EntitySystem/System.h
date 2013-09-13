@@ -18,20 +18,10 @@ class System:public CCObject
 {
 public:
     System();
-    
     void initWithEntityManager(EntityManager* entityManager);
-    
-    void setEnabled(bool enabled){mEnabled=enabled;}
-    bool enabled();
-    
-    virtual void init(){};
-    virtual void onEnter(){};
     virtual void update(float dt){};
-    virtual void onExit(){};
     
-protected:
-    bool mEnabled;
-    
+protected:    
     EntityManager* mEntityManager;
 };
 

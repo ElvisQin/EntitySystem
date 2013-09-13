@@ -289,6 +289,8 @@
 		1435CA9917DF4F55008BF70E /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1435CA9817DF4F55008BF70E /* AppDelegate.cpp */; };
 		1435CA9C17DF4F55008BF70E /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1435CA9B17DF4F55008BF70E /* HelloWorldScene.cpp */; };
 		149724D817E2240B006C5533 /* Ghost in Resources */ = {isa = PBXBuildFile; fileRef = 149724D717E2240B006C5533 /* Ghost */; };
+		14BC002B17E36327007E6E4B /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BC002917E36327007E6E4B /* MoveComponent.cpp */; };
+		14BC002E17E36517007E6E4B /* MoveSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BC002C17E36517007E6E4B /* MoveSystem.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -899,6 +901,10 @@
 		149724F017E224D7006C5533 /* EntityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EntityManager.h; path = Classes/EntitySystem/EntityManager.h; sourceTree = "<group>"; };
 		149724F117E224D7006C5533 /* System.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = System.cpp; path = Classes/EntitySystem/System.cpp; sourceTree = "<group>"; };
 		149724F217E224D7006C5533 /* System.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = System.h; path = Classes/EntitySystem/System.h; sourceTree = "<group>"; };
+		14BC002917E36327007E6E4B /* MoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MoveComponent.cpp; path = Classes/EntitySystem/MoveComponent.cpp; sourceTree = "<group>"; };
+		14BC002A17E36327007E6E4B /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoveComponent.h; path = Classes/EntitySystem/MoveComponent.h; sourceTree = "<group>"; };
+		14BC002C17E36517007E6E4B /* MoveSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MoveSystem.cpp; path = Classes/EntitySystem/MoveSystem.cpp; sourceTree = "<group>"; };
+		14BC002D17E36517007E6E4B /* MoveSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoveSystem.h; path = Classes/EntitySystem/MoveSystem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2138,6 +2144,8 @@
 				149724E417E224B5006C5533 /* HealthComponent.h */,
 				149724E517E224B5006C5533 /* RenderComponent.cpp */,
 				149724E617E224B5006C5533 /* RenderComponent.h */,
+				14BC002917E36327007E6E4B /* MoveComponent.cpp */,
+				14BC002A17E36327007E6E4B /* MoveComponent.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -2149,6 +2157,8 @@
 				149724E817E224C4006C5533 /* HealthSystem.h */,
 				149724E917E224C4006C5533 /* RenderSystem.cpp */,
 				149724EA17E224C4006C5533 /* RenderSystem.h */,
+				14BC002C17E36517007E6E4B /* MoveSystem.cpp */,
+				14BC002D17E36517007E6E4B /* MoveSystem.h */,
 			);
 			name = Systems;
 			sourceTree = "<group>";
@@ -2499,6 +2509,8 @@
 				1415B78F17E2262D00AF1452 /* RenderSystem.cpp in Sources */,
 				1415B79017E2263100AF1452 /* HealthComponent.cpp in Sources */,
 				1415B79117E2263500AF1452 /* RenderComponent.cpp in Sources */,
+				14BC002B17E36327007E6E4B /* MoveComponent.cpp in Sources */,
+				14BC002E17E36517007E6E4B /* MoveSystem.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

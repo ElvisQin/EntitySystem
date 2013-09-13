@@ -7,6 +7,8 @@
 #include "RenderSystem.h"
 #include "RenderComponent.h"
 #include "HealthComponent.h"
+#include "MoveSystem.h"
+#include "MoveComponent.h"
 
 class HelloWorld : public cocos2d::CCLayer
 {
@@ -32,7 +34,8 @@ virtual void draw();
 private:
     EntityManager* mEntityManager;
     HealthSystem* mHealthSystem;
-RenderComponent* mRenderSystem;
+    RenderComponent* mRenderSystem;
+    MoveSystem* mMoveSystem;
     Entity* mShip;
 };
 
