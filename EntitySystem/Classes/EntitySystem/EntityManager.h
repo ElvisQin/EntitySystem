@@ -15,8 +15,6 @@
 
 /**
  * Entity的数据库，管理所有Entity
- * @note 由于不在CCScene中，System不了解其他任何CCNode，所以通过这里来获取任何CCNode
- *       (在Unity3d中，每个GameObject具有全局名称，所以不需要对Entity的数据库)
  */
 class EntityManager:public CCObject
 {
@@ -24,7 +22,8 @@ public:
     EntityManager();
     ~EntityManager();
     
-    Entity* createEntity(const std::string & entityId);
+    int generateNewEid();
+    Entity* createEntity();
     void addComponentToEntity(Component* component,Entity* entity);
 
     /**
@@ -32,16 +31,15 @@ public:
      * @note 同一类型的Component在一个Entity中只有一个实例
      */
     Component* getComponentForEntity(const std::string & eId,Entity* entity);
-    void removeEntity(const std::string & eid);
+    void removeEntity(Entity* entity);
     
-    /**
-     * 拥有某个类型Component的所有Entity实例
-     */
+    /** 拥有某个类型Component的所有Entity实例 */
     CCArray* getAllEntitiesPosessingComponent(const std::string& cId);
     
 private:
-    CCArray* mEntities;
-    CCDictionary* mComponentsByType;    //所有Component组成的字典
+    CCArray* _entities;
+    CCDictionary* _componentsByType;    //所有Component组成的字典
+    int _lowestUnassignedEid;
 };
 
 #endif /* defined(__ESDemo__EntityManager__) */

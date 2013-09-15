@@ -15,14 +15,10 @@ class HealthSystem:public System
 {
 public:
     void draw();
-    
-    void update(float dt);
-    
-private:
-    void fadeCompleted(CCNode* sender);
+    virtual void update(float dt);
     
 private:
-    std::string  mEid;
+    void fadeCompleted(cocos2d::CCNode* sender);
 };
 
 #endif /* defined(__ESDemo__HealthSystem__) */

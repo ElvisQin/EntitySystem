@@ -7,7 +7,7 @@
 //
 
 #include "Entity.h"
-Entity::Entity(const std::string& entityId)
+Entity::Entity(int32_t entityId)
 {
-    mEntityId=entityId;
+    _entityId=entityId;
 }

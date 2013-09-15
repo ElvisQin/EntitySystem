@@ -10,21 +10,44 @@
 
 EntityManager::EntityManager()
 {
-    mEntities=CCArray::create();
-    mEntities->retain();
-    mComponentsByType=CCDictionary::create();
-    mComponentsByType->retain();
+    _entities=CCArray::create();
+    _entities->retain();
+    _componentsByType=CCDictionary::create();
+    _componentsByType->retain();
+    _lowestUnassignedEid=1;
 }
 
 EntityManager::~EntityManager()
 {
-    CC_SAFE_RELEASE(mEntities);
-    CC_SAFE_RELEASE(mComponentsByType);
+    CC_SAFE_RELEASE(_entities);
+    CC_SAFE_RELEASE(_componentsByType);
 }
 
-Entity* EntityManager::createEntity(const std::string & entityId)
+int EntityManager::generateNewEid()
 {
-    mEntities->addObject(new CCString(entityId));
+    if (_lowestUnassignedEid < UINT32_MAX)
+    {
+        return _lowestUnassignedEid++;
+    }
+    else
+    {
+        for (uint32_t i = 1; i < UINT32_MAX; ++i)
+        {
+            if (!_entities->containsObject(CCString::createWithFormat("%d",i)))
+            {
+                return i;
+            }
+        }
+
+        return 0;
+    }
+}
+
+Entity* EntityManager::createEntity()
+{
+    int32_t entityId=generateNewEid();
+    
+    _entities->addObject(CCString::createWithFormat("%d",entityId));
     return new Entity(entityId);
 }
 
@@ -36,11 +59,11 @@ void EntityManager::addComponentToEntity(Component* component,Entity* entity)
     }
     
     //每个类型的Component单独存放一个字典
-    CCDictionary* components=(CCDictionary*)mComponentsByType->objectForKey(component->getComponentType());
+    CCDictionary* components=(CCDictionary*)_componentsByType->objectForKey(component->getComponentType());
     if(!components)
     {
         components=CCDictionary::create();
-        mComponentsByType->setObject(components, component->getComponentType());
+        _componentsByType->setObject(components, component->getComponentType());
     }
     
     //同一Component在Entity中只能有一个实例
@@ -49,10 +72,10 @@ void EntityManager::addComponentToEntity(Component* component,Entity* entity)
 
 Component* EntityManager::getComponentForEntity(const std::string& cId,Entity* entity)
 {
-    CCDictionary* dicEntities=(CCDictionary*)mComponentsByType->objectForKey(cId);
+    CCDictionary* dicEntities=(CCDictionary*)_componentsByType->objectForKey(cId);
     if(dicEntities)
     {
-        std::string key=entity->getEntityId();
+        int key=entity->getEntityId();
         CCObject* value=dicEntities->objectForKey(key);
         
         return (Component*)value;
@@ -61,29 +84,30 @@ Component* EntityManager::getComponentForEntity(const std::string& cId,Entity* e
     return NULL;
 }
 
-void EntityManager::removeEntity(const std::string & eid)
+void EntityManager::removeEntity(Entity* entity)
 {
-    CCArray* keys=mComponentsByType->allKeys();
+    CCArray* keys=_componentsByType->allKeys();
     if(!keys)
     {
         return;
     }
     
+    CCString* key=CCString::createWithFormat("%d",entity->getEntityId());
     for (int i=0; i<keys->count(); i++)
     {
-        CCDictionary* dict=(CCDictionary*)mComponentsByType->objectForKey(((CCString*)keys->objectAtIndex(i))->getCString());
-        if(dict&&dict->objectForKey(eid))
+        CCDictionary* dict=(CCDictionary*)_componentsByType->objectForKey(((CCString*)keys->objectAtIndex(i))->getCString());
+        if(dict&&dict->objectForKey(key->getCString()))
         {
-            dict->removeObjectForKey(eid);
+            dict->removeObjectForKey(key->getCString());
         }
     }
     
-    mEntities->removeObject(new CCString(eid));
+    _entities->removeObject(key);
 }
 
 CCArray* EntityManager::getAllEntitiesPosessingComponent(const std::string& cId)
 {
-    CCDictionary* components=(CCDictionary*)mComponentsByType->objectForKey(cId);
+    CCDictionary* components=(CCDictionary*)_componentsByType->objectForKey(cId);
     if(components)
     {
         //所有Entity的e_id_type
@@ -91,8 +115,7 @@ CCArray* EntityManager::getAllEntitiesPosessingComponent(const std::string& cId)
         CCArray* retval=CCArray::createWithCapacity(keys->count());
         for (int i=0; i<keys->count(); i++)
         {
-            CCString* key=(CCString*)keys->objectAtIndex(i);
-            retval->addObject(new Entity(std::string(key->getCString())));
+            retval->addObject(new Entity(((CCInteger*)keys->objectAtIndex(i))->getValue()));
         }
         
         return retval;

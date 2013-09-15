@@ -8,12 +8,12 @@
 
 #include "System.h"
 System::System()
-:mEntityManager(NULL)
+:_entityManager(NULL)
 {
     
 }
 
-void System::initWithEntityManager(EntityManager *entityManager)
+void System::initWithEntityManager(EntityManager* entityManager)
 {
-    mEntityManager=entityManager;
+    _entityManager=entityManager;
 }

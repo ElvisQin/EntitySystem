@@ -41,7 +41,7 @@ CCPoint MoveSystem::arriveEntity(Entity* entity,MoveComponent* move,RenderCompon
 CCPoint MoveSystem::separateEntity(Entity* entity,MoveComponent* move,RenderComponent* render)
 {
     CCPoint steering=CCPointZero;
-    CCArray* entities=mEntityManager->getAllEntitiesPosessingComponent(RenderComponentType);
+    CCArray* entities=_entityManager->getAllEntitiesPosessingComponent(RenderComponentType);
     if(entities)
     {
         for (int i=0;i<entities->count(); i++)
@@ -49,7 +49,7 @@ CCPoint MoveSystem::separateEntity(Entity* entity,MoveComponent* move,RenderComp
             Entity* otherEntity=(Entity*)entities->objectAtIndex(i);
             if(otherEntity->getEntityId()==entity->getEntityId()) continue;
             
-            RenderComponent* otherRender=(RenderComponent*)mEntityManager->getComponentForEntity(RenderComponentType, otherEntity);
+            RenderComponent* otherRender=(RenderComponent*)_entityManager->getComponentForEntity(RenderComponentType, otherEntity);
             CCPoint direction=ccpSub(render->getNode()->getPosition(), otherRender->getNode()->getPosition());
             float distance=ccpLength(direction);
             static float SEPARATE_THRESHHOLD=20;
@@ -67,7 +67,7 @@ CCPoint MoveSystem::separateEntity(Entity* entity,MoveComponent* move,RenderComp
 
 void MoveSystem::update(float dt)
 {
-    CCArray* entities=mEntityManager->getAllEntitiesPosessingComponent(MoveComponentType);
+    CCArray* entities=_entityManager->getAllEntitiesPosessingComponent(MoveComponentType);
     if(!entities)
     {
         return;
@@ -76,8 +76,8 @@ void MoveSystem::update(float dt)
     for (int i=0; i<entities->count(); i++)
     {
         Entity* entity=(Entity*)entities->objectAtIndex(i);
-        MoveComponent* move=(MoveComponent*)mEntityManager->getComponentForEntity(MoveComponentType, entity);
-        RenderComponent* render=(RenderComponent*)mEntityManager->getComponentForEntity(RenderComponentType, entity);
+        MoveComponent* move=(MoveComponent*)_entityManager->getComponentForEntity(MoveComponentType, entity);
+        RenderComponent* render=(RenderComponent*)_entityManager->getComponentForEntity(RenderComponentType, entity);
         
         if(!move||!render) continue;
         

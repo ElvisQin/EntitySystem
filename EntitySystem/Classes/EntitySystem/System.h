@@ -12,9 +12,7 @@
 #include "cocos2d.h"
 #include "EntityManager.h"
 
-USING_NS_CC;
-
-class System:public CCObject
+class System:public cocos2d::CCObject
 {
 public:
     System();
@@ -22,7 +20,7 @@ public:
     virtual void update(float dt){};
     
 protected:    
-    EntityManager* mEntityManager;
+    EntityManager* _entityManager;
 };
 
 #endif /* defined(__ESDemo__System__) */

@@ -12,18 +12,17 @@
 #include <iostream>
 #include "cocos2d.h"
 
-USING_NS_CC;
-
+/**
+ * Entity就是一个Id
+ */
 class Entity:public cocos2d::CCObject
 {
 public:
-    //Entity就是一个Id
-    Entity(const std::string& entityId);
-    
-    const std::string& getEntityId() const {return mEntityId;}
+    Entity(int32_t entityId);
+    int32_t getEntityId(){return _entityId;}
     
 private:
-    std::string mEntityId;
+    int32_t _entityId;
 };
 
 #endif /* defined(__ESDemo__Entity__) */

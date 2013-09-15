@@ -14,7 +14,7 @@
 
 void HealthSystem::update(float dt)
 {
-    CCArray* entities=mEntityManager->getAllEntitiesPosessingComponent(std::string("HealthComponent"));
+    CCArray* entities=_entityManager->getAllEntitiesPosessingComponent(HealthComponentType);
     if(!entities)
     {
         return;
@@ -24,8 +24,8 @@ void HealthSystem::update(float dt)
     {
         Entity* entity=(Entity*)entities->objectAtIndex(i);
         
-        HealthComponent* health=(HealthComponent*)mEntityManager->getComponentForEntity(HealthComponentType, entity);
-        RenderComponent* render=(RenderComponent*)mEntityManager->getComponentForEntity(RenderComponentType, entity);
+        HealthComponent* health=(HealthComponent*)_entityManager->getComponentForEntity(HealthComponentType, entity);
+        RenderComponent* render=(RenderComponent*)_entityManager->getComponentForEntity(RenderComponentType, entity);
         
         if(!health->getAlive()) return;
         if(health->getMaxHP()==0) return;
@@ -35,7 +35,7 @@ void HealthSystem::update(float dt)
             
             if(render)
             {
-                mEid=entity->getEntityId();
+                render->getNode()->setUserData(entity);
                 render->getNode()->runAction(CCSequence::create(CCFadeOut::create(0.5),
                                                                 CCCallFuncN::create(this,
                                                                                     callfuncN_selector(HealthSystem::fadeCompleted)),
@@ -43,7 +43,7 @@ void HealthSystem::update(float dt)
             }
             else
             {
-                mEntityManager->removeEntity(entity->getEntityId());
+                _entityManager->removeEntity(entity);
             }
         }
     }
@@ -51,20 +51,21 @@ void HealthSystem::update(float dt)
 
 void HealthSystem::fadeCompleted(CCNode* sender)
 {
-    mEntityManager->removeEntity(mEid);
+    Entity* entity=(Entity*)sender->getUserData();
+    _entityManager->removeEntity(entity);
     sender->removeFromParentAndCleanup(true);
 }
 
 void HealthSystem::draw()
 {
-    CCArray* entities=mEntityManager->getAllEntitiesPosessingComponent(std::string("HealthComponent"));
+    CCArray* entities=_entityManager->getAllEntitiesPosessingComponent(HealthComponentType);
     if(!entities) return;
     
     for (int i=0; i<entities->count(); i++)
     {
         Entity* entity=(Entity*)entities->objectAtIndex(i);
-        HealthComponent* health=(HealthComponent*)mEntityManager->getComponentForEntity(HealthComponentType, entity);
-        RenderComponent* render=(RenderComponent*)mEntityManager->getComponentForEntity(RenderComponentType, entity);
+        HealthComponent* health=(HealthComponent*)_entityManager->getComponentForEntity(HealthComponentType, entity);
+        RenderComponent* render=(RenderComponent*)_entityManager->getComponentForEntity(RenderComponentType, entity);
         
         if(!health||!render) return;
         

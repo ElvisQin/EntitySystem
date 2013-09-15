@@ -32,11 +32,10 @@ virtual void update(float delta);
 virtual void draw();
 
 private:
-    EntityManager* mEntityManager;
-    HealthSystem* mHealthSystem;
-    RenderComponent* mRenderSystem;
-    MoveSystem* mMoveSystem;
-    Entity* mShip;
+    EntityManager* _entityManager;
+    HealthSystem* _healthSystem;
+    RenderComponent* _renderSystem;
+    MoveSystem* _moveSystem;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

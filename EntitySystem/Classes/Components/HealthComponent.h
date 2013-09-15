@@ -12,14 +12,16 @@
 #include "cocos2d.h"
 #include "Component.h"
 
-static const std::string HealthComponentType=std::string("HealthComponent");
+static const std::string HealthComponentType=
+                std::string("HealthComponent");
 
 class HealthComponent:public Component
 {
 public:
     HealthComponent(float curHP,float maxHP);
     
-    virtual const std::string& getComponentType() const {return HealthComponentType;};
+    virtual const std::string& getComponentType()
+        const {return HealthComponentType;};
 
     float getCurHP(){return mCurHP;}
     float getMaxHP(){return mMaxHP;}
