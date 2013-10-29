@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14740609180A9D3500B9F680 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 14740608180A9D3500B9F680 /* fonts */; };
+		1474060C180AC26400B9F680 /* GunEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1474060A180AC26400B9F680 /* GunEvent.cpp */; };
+		1474060F180AC93B00B9F680 /* BulletComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1474060D180AC93B00B9F680 /* BulletComponent.cpp */; };
+		147548AC1809975800CF3756 /* CollisionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548AA1809975800CF3756 /* CollisionComponent.cpp */; };
+		147548AF1809976C00CF3756 /* CollisionSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548AD1809976C00CF3756 /* CollisionSystem.cpp */; };
+		147548B21809A01B00CF3756 /* CollisionEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548B01809A01B00CF3756 /* CollisionEvent.cpp */; };
+		147548B51809B19900CF3756 /* ShipComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548B31809B19900CF3756 /* ShipComponent.cpp */; };
+		147548B81809B1AD00CF3756 /* GhostComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548B61809B1AD00CF3756 /* GhostComponent.cpp */; };
+		147548BB180A2FDF00CF3756 /* GunComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548B9180A2FDF00CF3756 /* GunComponent.cpp */; };
+		147548BE180A2FF000CF3756 /* GunSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548BC180A2FF000CF3756 /* GunSystem.cpp */; };
+		147548C1180A34D200CF3756 /* GameOverComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548BF180A34D200CF3756 /* GameOverComponent.cpp */; };
+		147548C4180A34ED00CF3756 /* GameOverSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548C2180A34ED00CF3756 /* GameOverSystem.cpp */; };
+		147548C7180A359400CF3756 /* DeadEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548C5180A359400CF3756 /* DeadEvent.cpp */; };
+		147548CA180A736400CF3756 /* HitComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548C8180A736400CF3756 /* HitComponent.cpp */; };
+		147548CD180A737500CF3756 /* HitSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 147548CB180A737500CF3756 /* HitSystem.cpp */; };
 		149FFD551806E34C0062CFD1 /* HealthComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 149FFD511806E34C0062CFD1 /* HealthComponent.cpp */; };
 		149FFD561806E34C0062CFD1 /* RenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 149FFD531806E34C0062CFD1 /* RenderComponent.cpp */; };
 		149FFD681806E3640062CFD1 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 149FFD571806E3640062CFD1 /* Component.cpp */; };
@@ -255,6 +270,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14740608180A9D3500B9F680 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		1474060A180AC26400B9F680 /* GunEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GunEvent.cpp; path = ../Classes/Events/GunEvent.cpp; sourceTree = "<group>"; };
+		1474060B180AC26400B9F680 /* GunEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GunEvent.h; path = ../Classes/Events/GunEvent.h; sourceTree = "<group>"; };
+		1474060D180AC93B00B9F680 /* BulletComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BulletComponent.cpp; path = ../Classes/Components/BulletComponent.cpp; sourceTree = "<group>"; };
+		1474060E180AC93B00B9F680 /* BulletComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BulletComponent.h; path = ../Classes/Components/BulletComponent.h; sourceTree = "<group>"; };
+		147548AA1809975800CF3756 /* CollisionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionComponent.cpp; path = ../Classes/Components/CollisionComponent.cpp; sourceTree = "<group>"; };
+		147548AB1809975800CF3756 /* CollisionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionComponent.h; path = ../Classes/Components/CollisionComponent.h; sourceTree = "<group>"; };
+		147548AD1809976C00CF3756 /* CollisionSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSystem.cpp; path = ../Classes/Systems/CollisionSystem.cpp; sourceTree = "<group>"; };
+		147548AE1809976C00CF3756 /* CollisionSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionSystem.h; path = ../Classes/Systems/CollisionSystem.h; sourceTree = "<group>"; };
+		147548B01809A01B00CF3756 /* CollisionEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionEvent.cpp; path = ../Classes/Events/CollisionEvent.cpp; sourceTree = "<group>"; };
+		147548B11809A01B00CF3756 /* CollisionEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionEvent.h; path = ../Classes/Events/CollisionEvent.h; sourceTree = "<group>"; };
+		147548B31809B19900CF3756 /* ShipComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipComponent.cpp; path = ../Classes/Components/ShipComponent.cpp; sourceTree = "<group>"; };
+		147548B41809B19900CF3756 /* ShipComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipComponent.h; path = ../Classes/Components/ShipComponent.h; sourceTree = "<group>"; };
+		147548B61809B1AD00CF3756 /* GhostComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GhostComponent.cpp; path = ../Classes/Components/GhostComponent.cpp; sourceTree = "<group>"; };
+		147548B71809B1AD00CF3756 /* GhostComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GhostComponent.h; path = ../Classes/Components/GhostComponent.h; sourceTree = "<group>"; };
+		147548B9180A2FDF00CF3756 /* GunComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GunComponent.cpp; path = ../Classes/Components/GunComponent.cpp; sourceTree = "<group>"; };
+		147548BA180A2FDF00CF3756 /* GunComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GunComponent.h; path = ../Classes/Components/GunComponent.h; sourceTree = "<group>"; };
+		147548BC180A2FF000CF3756 /* GunSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GunSystem.cpp; path = ../Classes/Systems/GunSystem.cpp; sourceTree = "<group>"; };
+		147548BD180A2FF000CF3756 /* GunSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GunSystem.h; path = ../Classes/Systems/GunSystem.h; sourceTree = "<group>"; };
+		147548BF180A34D200CF3756 /* GameOverComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameOverComponent.cpp; path = ../Classes/Components/GameOverComponent.cpp; sourceTree = "<group>"; };
+		147548C0180A34D200CF3756 /* GameOverComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverComponent.h; path = ../Classes/Components/GameOverComponent.h; sourceTree = "<group>"; };
+		147548C2180A34ED00CF3756 /* GameOverSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameOverSystem.cpp; path = ../Classes/Systems/GameOverSystem.cpp; sourceTree = "<group>"; };
+		147548C3180A34ED00CF3756 /* GameOverSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverSystem.h; path = ../Classes/Systems/GameOverSystem.h; sourceTree = "<group>"; };
+		147548C5180A359400CF3756 /* DeadEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DeadEvent.cpp; path = ../Classes/Events/DeadEvent.cpp; sourceTree = "<group>"; };
+		147548C6180A359400CF3756 /* DeadEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeadEvent.h; path = ../Classes/Events/DeadEvent.h; sourceTree = "<group>"; };
+		147548C8180A736400CF3756 /* HitComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HitComponent.cpp; path = ../Classes/Components/HitComponent.cpp; sourceTree = "<group>"; };
+		147548C9180A736400CF3756 /* HitComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HitComponent.h; path = ../Classes/Components/HitComponent.h; sourceTree = "<group>"; };
+		147548CB180A737500CF3756 /* HitSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HitSystem.cpp; path = ../Classes/Systems/HitSystem.cpp; sourceTree = "<group>"; };
+		147548CC180A737500CF3756 /* HitSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HitSystem.h; path = ../Classes/Systems/HitSystem.h; sourceTree = "<group>"; };
 		149FFD511806E34C0062CFD1 /* HealthComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HealthComponent.cpp; path = ../Classes/Components/HealthComponent.cpp; sourceTree = "<group>"; };
 		149FFD521806E34C0062CFD1 /* HealthComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthComponent.h; path = ../Classes/Components/HealthComponent.h; sourceTree = "<group>"; };
 		149FFD531806E34C0062CFD1 /* RenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderComponent.cpp; path = ../Classes/Components/RenderComponent.cpp; sourceTree = "<group>"; };
@@ -397,6 +441,13 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		147405FD180A985600B9F680 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		149FFD281806E2A20062CFD1 /* EntitySystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,10 +458,6 @@
 				149FFD5B1806E3640062CFD1 /* EntityFactory.h */,
 				149FFD5C1806E3640062CFD1 /* EntityManager.cpp */,
 				149FFD5D1806E3640062CFD1 /* EntityManager.h */,
-				149FFD621806E3640062CFD1 /* MoveComponent.cpp */,
-				149FFD631806E3640062CFD1 /* MoveComponent.h */,
-				149FFD641806E3640062CFD1 /* MoveSystem.cpp */,
-				149FFD651806E3640062CFD1 /* MoveSystem.h */,
 				149FFD661806E3640062CFD1 /* System.cpp */,
 				149FFD671806E3640062CFD1 /* System.h */,
 			);
@@ -423,7 +470,23 @@
 				149FFD511806E34C0062CFD1 /* HealthComponent.cpp */,
 				149FFD521806E34C0062CFD1 /* HealthComponent.h */,
 				149FFD531806E34C0062CFD1 /* RenderComponent.cpp */,
+				149FFD621806E3640062CFD1 /* MoveComponent.cpp */,
+				149FFD631806E3640062CFD1 /* MoveComponent.h */,
 				149FFD541806E34C0062CFD1 /* RenderComponent.h */,
+				147548AA1809975800CF3756 /* CollisionComponent.cpp */,
+				147548AB1809975800CF3756 /* CollisionComponent.h */,
+				147548B31809B19900CF3756 /* ShipComponent.cpp */,
+				147548B41809B19900CF3756 /* ShipComponent.h */,
+				147548B61809B1AD00CF3756 /* GhostComponent.cpp */,
+				147548B71809B1AD00CF3756 /* GhostComponent.h */,
+				147548B9180A2FDF00CF3756 /* GunComponent.cpp */,
+				147548BA180A2FDF00CF3756 /* GunComponent.h */,
+				147548BF180A34D200CF3756 /* GameOverComponent.cpp */,
+				147548C0180A34D200CF3756 /* GameOverComponent.h */,
+				147548C8180A736400CF3756 /* HitComponent.cpp */,
+				147548C9180A736400CF3756 /* HitComponent.h */,
+				1474060D180AC93B00B9F680 /* BulletComponent.cpp */,
+				1474060E180AC93B00B9F680 /* BulletComponent.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -431,6 +494,12 @@
 		149FFD301806E2BE0062CFD1 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				147548B01809A01B00CF3756 /* CollisionEvent.cpp */,
+				147548B11809A01B00CF3756 /* CollisionEvent.h */,
+				147548C5180A359400CF3756 /* DeadEvent.cpp */,
+				147548C6180A359400CF3756 /* DeadEvent.h */,
+				1474060A180AC26400B9F680 /* GunEvent.cpp */,
+				1474060B180AC26400B9F680 /* GunEvent.h */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -440,8 +509,18 @@
 			children = (
 				149FFD721806E3730062CFD1 /* HealthSystem.cpp */,
 				149FFD731806E3730062CFD1 /* HealthSystem.h */,
+				149FFD641806E3640062CFD1 /* MoveSystem.cpp */,
+				149FFD651806E3640062CFD1 /* MoveSystem.h */,
 				149FFD741806E3730062CFD1 /* RenderSystem.cpp */,
 				149FFD751806E3730062CFD1 /* RenderSystem.h */,
+				147548AD1809976C00CF3756 /* CollisionSystem.cpp */,
+				147548AE1809976C00CF3756 /* CollisionSystem.h */,
+				147548BC180A2FF000CF3756 /* GunSystem.cpp */,
+				147548BD180A2FF000CF3756 /* GunSystem.h */,
+				147548C2180A34ED00CF3756 /* GameOverSystem.cpp */,
+				147548C3180A34ED00CF3756 /* GameOverSystem.h */,
+				147548CB180A737500CF3756 /* HitSystem.cpp */,
+				147548CC180A737500CF3756 /* HitSystem.h */,
 			);
 			name = Systems;
 			sourceTree = "<group>";
@@ -449,6 +528,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				147405FD180A985600B9F680 /* Views */,
 				149FFD9B1806E68F0062CFD1 /* AppMacros.h */,
 				149FFD311806E2C80062CFD1 /* Systems */,
 				149FFD301806E2BE0062CFD1 /* Events */,
@@ -577,6 +657,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				14740608180A9D3500B9F680 /* fonts */,
 				149FFD9C1806EA800062CFD1 /* Ghost */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
@@ -642,7 +723,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = MDDB52YB8L;
+						DevelopmentTeam = GK7GJ2W5BK;
 					};
 				};
 			};
@@ -781,6 +862,7 @@
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
+				14740609180A9D3500B9F680 /* fonts in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
@@ -823,17 +905,31 @@
 				149FFD551806E34C0062CFD1 /* HealthComponent.cpp in Sources */,
 				149FFD681806E3640062CFD1 /* Component.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				1474060F180AC93B00B9F680 /* BulletComponent.cpp in Sources */,
 				149FFD6D1806E3640062CFD1 /* MoveComponent.cpp in Sources */,
 				149FFD561806E34C0062CFD1 /* RenderComponent.cpp in Sources */,
+				147548C7180A359400CF3756 /* DeadEvent.cpp in Sources */,
+				147548CD180A737500CF3756 /* HitSystem.cpp in Sources */,
+				147548AC1809975800CF3756 /* CollisionComponent.cpp in Sources */,
+				147548B21809A01B00CF3756 /* CollisionEvent.cpp in Sources */,
+				147548B51809B19900CF3756 /* ShipComponent.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				147548CA180A736400CF3756 /* HitComponent.cpp in Sources */,
+				1474060C180AC26400B9F680 /* GunEvent.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
+				147548AF1809976C00CF3756 /* CollisionSystem.cpp in Sources */,
 				149FFD781806E3730062CFD1 /* RenderSystem.cpp in Sources */,
+				147548BE180A2FF000CF3756 /* GunSystem.cpp in Sources */,
+				147548C4180A34ED00CF3756 /* GameOverSystem.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				149FFD691806E3640062CFD1 /* Entity.cpp in Sources */,
+				147548C1180A34D200CF3756 /* GameOverComponent.cpp in Sources */,
+				147548BB180A2FDF00CF3756 /* GunComponent.cpp in Sources */,
 				149FFD6A1806E3640062CFD1 /* EntityManager.cpp in Sources */,
 				149FFD771806E3730062CFD1 /* HealthSystem.cpp in Sources */,
 				149FFD6E1806E3640062CFD1 /* MoveSystem.cpp in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
+				147548B81809B1AD00CF3756 /* GhostComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +1004,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -939,6 +1036,7 @@
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../../../external/libwebsockets/ios/lib\"",
 				);
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -950,6 +1048,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -979,6 +1078,7 @@
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../../../external/libwebsockets/ios/lib\"",
 				);
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

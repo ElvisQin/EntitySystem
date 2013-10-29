@@ -7,101 +7,42 @@
 //
 
 #include "MoveSystem.h"
-CCPoint MoveSystem::arriveEntity(Entity* entity,MoveComponent* move,RenderComponent* render)
-{
-    CCPoint vector=ccpSub(move->mMoveTarget, render->getNode()->getPosition());
-    float distance=ccpLength(vector);
-    
-    float targetRadius=5;
-    float slowRadius=targetRadius+25;
-    static float timeToTarget=0.1;
-    
-    if(distance<targetRadius)
-    {
-        return CCPointZero;
-    }
-    
-    float targetSpeed;
-    if (distance>slowRadius) {
-        targetSpeed=move->mMaxVelocity;
-    }
-    else {
-        targetSpeed=move->mMaxVelocity*distance/slowRadius;
-    }
-    
-    CCPoint targetVelocity=ccpMult(ccpNormalize(vector), targetSpeed);
-    CCPoint acceleration=ccpMult(ccpSub(targetVelocity,move->mVelocity), 1/timeToTarget);
-    if(ccpLength(acceleration)>move->mMaxAcceleration){
-        acceleration=ccpMult(ccpNormalize(acceleration), move->mMaxAcceleration);
-    }
-    
-    return acceleration;
-}
 
-CCPoint MoveSystem::separateEntity(Entity* entity,MoveComponent* move,RenderComponent* render)
+MoveSystem* MoveSystem::create(EntityManager* manager)
 {
-    CCPoint steering=CCPointZero;
-    CCArray* entities=_entityManager->getAllEntitiesPosessingComponent(RenderComponentType);
-    if(entities)
-    {
-        for (int i=0;i<entities->count(); i++)
-        {
-            Entity* otherEntity=(Entity*)entities->objectAtIndex(i);
-            if(otherEntity==entity) continue;
-            
-            RenderComponent* otherRender=(RenderComponent*)_entityManager->getComponentForEntity(RenderComponentType, otherEntity);
-            CCPoint direction=ccpSub(render->getNode()->getPosition(), otherRender->getNode()->getPosition());
-            float distance=ccpLength(direction);
-            static float SEPARATE_THRESHHOLD=20;
-            
-            if(distance<SEPARATE_THRESHHOLD)
-            {
-                direction=ccpNormalize(direction);
-                steering=ccpAdd(steering, ccpMult(direction, move->mMaxAcceleration));
-            }
-        }
+    MoveSystem* sys=new MoveSystem();
+    if(sys){
+        sys->initWithManager(manager);
+        return sys;
     }
     
-    return steering;
+    CC_SAFE_RELEASE(sys);
+    return NULL;
 }
 
 void MoveSystem::update(float dt)
 {
-    CCArray* entities=_entityManager->getAllEntitiesPosessingComponent(MoveComponentType);
-    if(!entities)
-    {
+    const std::vector<Entity*>* entities=_entityManager->getAllEntitiesPosessingComponent(MoveComponent::MOVE_TYPE);
+    if(entities==nullptr){
         return;
     }
     
-    for (int i=0; i<entities->count(); i++)
-    {
-        Entity* entity=(Entity*)entities->objectAtIndex(i);
-        MoveComponent* move=(MoveComponent*)_entityManager->getComponentForEntity(MoveComponentType, entity);
-        RenderComponent* render=(RenderComponent*)_entityManager->getComponentForEntity(RenderComponentType, entity);
+    for (int i=0; i<entities->size(); i++){
+        Entity* entity=entities->at(i);
         
-        if(!move||!render) continue;
-        
-        CCPoint arrivePart=arriveEntity(entity, move, render);
-        CCPoint separatePart=separateEntity(entity, move, render);
-        CCPoint newAcceleration=ccpAdd(arrivePart, separatePart);
-        
-        move->mAcceleration=ccpAdd(move->mAcceleration, newAcceleration);
-        if(ccpLength(move->mAcceleration)>move->mMaxAcceleration)
-        {
-            move->mAcceleration = ccpMult(ccpNormalize(move->mAcceleration), move->mMaxAcceleration);
+        MoveComponent* move=(MoveComponent*)_entityManager->getComponentForEntity(MoveComponent::MOVE_TYPE, entity);
+        RenderComponent* render=(RenderComponent*)_entityManager->getComponentForEntity(RenderComponent::RENDER_TYPE, entity);
+        if(render==nullptr){
+            continue;
         }
         
-        // Update current velocity based on acceleration and dt, and clamp
-        move->mVelocity = ccpAdd(move->mVelocity, ccpMult(move->mAcceleration, dt));
-        if (ccpLength(move->mVelocity) > move->mMaxVelocity) {
-            move->mVelocity = ccpMult(ccpNormalize(move->mVelocity), move->mMaxVelocity);
-        }
+        Node* node=render->getNode();
+        Point dir=move->moveTarget-node->getPosition();
+        node->setPosition(node->getPosition()+dir.normalize()*dt*100*move->acceleration);
         
-        // Update position based on velocity
-        CCPoint newPosition = ccpAdd(render->getNode()->getPosition(), ccpMult(move->mVelocity, dt));
-        CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-        newPosition.x = MAX(MIN(newPosition.x, winSize.width), 0);
-        newPosition.y = MAX(MIN(newPosition.y, winSize.height), 0);
-        render->getNode()->setPosition(newPosition);
+        if (node->getPosition().getDistance(move->moveTarget)<5) {
+            render->getNode()->removeFromParent();
+            _entityManager->removeEntity(entity);
+        }
     }
 }

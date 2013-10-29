@@ -7,13 +7,23 @@
 //
 
 #include "MoveComponent.h"
-MoveComponent* MoveComponent::initWithMoveTarget(Point moveTarget, float maxVelocity, float maxAcceleration)
+
+const char* MoveComponent::MOVE_TYPE="MoveComponentType";
+
+MoveComponent* MoveComponent::cretae(Point target, float a)
 {
-    mMoveTarget=moveTarget;
-    mVelocity=Point::ZERO;;
-    mAcceleration=Point::ZERO;;
-    mMaxVelocity=maxVelocity;
-    mMaxAcceleration=maxAcceleration;
+    MoveComponent* com=new MoveComponent(target,a);
+    if(com) {
+        return com;
+    }
     
-    return this;
+    CC_SAFE_RELEASE(com);
+    return NULL;
+}
+
+MoveComponent::MoveComponent(Point target, float a)
+:ECSComponent(MoveComponent::MOVE_TYPE)
+{
+    moveTarget=target;
+    acceleration=a;
 }

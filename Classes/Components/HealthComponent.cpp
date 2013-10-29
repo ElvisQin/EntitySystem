@@ -7,9 +7,27 @@
 //
 
 #include "HealthComponent.h"
-HealthComponent::HealthComponent(float curHP,float maxHP)
+
+const char* HealthComponent::HEALTH_TYPE="HealthComponent";
+
+HealthComponent* HealthComponent::create(float curHP,float maxHP,bool needBar)
 {
-    mCurHP=curHP;
-    mMaxHP=maxHP;
-    mAlive=true;
+    HealthComponent* com=new HealthComponent();
+    if(com) {
+        com->curHP=curHP;
+        com->maxHP=maxHP;
+        com->alive=true;
+        com->needHPBar=needBar;
+        
+        return com;
+    }
+    
+    CC_SAFE_RELEASE(com);
+    return NULL;
+}
+
+HealthComponent::HealthComponent()
+:ECSComponent(HealthComponent::HEALTH_TYPE)
+{
+    
 }

@@ -9,33 +9,53 @@
 #include "HealthComponent.h"
 #include "MoveSystem.h"
 #include "MoveComponent.h"
-
+#include "CollisionComponent.h"
+#include "CollisionSystem.h"
+#include "ShipComponent.h"
+#include "GhostComponent.h"
+#include "HitSystem.h"
+#include "HitComponent.h"
+#include "DeadEvent.h"
+#include "GameOverSystem.h"
+#include "GameOverComponent.h"
+#include "GunEvent.h"
+#include "GunSystem.h"
+#include "GunComponent.h"
+#include "BulletComponent.h"
 
 class HelloWorld : public cocos2d::Layer
 {
 public:
-    // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
 
-    // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-    virtual bool init();  
+    virtual bool init();
     
-    // a selector callback
-    void menuCloseCallback(Object* pSender);
+    virtual bool onTouchBegin(Touch*,Event*);
+    virtual void onTouchEnded(Touch*,Event*);
     
-    // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 private:
-    void addGhosts();
+    void initEntitySystem();
+    void addShip();
+    void addGhost(const Point&);
+    void addbullet(EventCustom*);
+    void addHelp(const Point&);
     virtual void update(float delta);
     virtual void draw();
+    
+    void gameOver(EventCustom*);
     
 private:
     EntityManager* _entityManager;
     HealthSystem* _healthSystem;
-    RenderComponent* _renderSystem;
+    RenderSystem* _renderSystem;
     MoveSystem* _moveSystem;
-
+    CollisionSystem* _collisionSystem;
+    HitSystem* _hitSystem;
+    GameOverSystem* _gameOverSystem;
+    GunSystem* _gunSystem;
+    
+    Sprite* _ship;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

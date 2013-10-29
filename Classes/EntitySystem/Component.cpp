@@ -7,3 +7,7 @@
 //
 
 #include "Component.h"
+ECSComponent::ECSComponent(const std::string& type)
+{
+    _type=type;
+}

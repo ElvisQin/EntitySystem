@@ -13,32 +13,31 @@
 #include "Component.h"
 #include "cocos2d.h"
 
-/**
- * Entity的数据库，管理所有Entity
- */
+/** Manage all entity ids, and it's components */
 class EntityManager:public Object
 {
 public:
     EntityManager();
     ~EntityManager();
     
-    int generateNewEid();
+    entity_id_type generateNewEid();
     Entity* createEntity();
-    void addComponentToEntity(ECSComponent* component,Entity* entity);
-
-    /**
-     * 获取某个Entity的某个类型的Component
-     * @note 同一类型的Component在一个Entity中只有一个实例
-     */
-    Component* getComponentForEntity(const std::string & eId,Entity* entity);
     void removeEntity(Entity* entity);
     
-    /** 拥有某个类型Component的所有Entity实例 */
-    Array* getAllEntitiesPosessingComponent(const std::string& cId);
+    void addComponentToEntity(ECSComponent* component,Entity* entity);
+
+    /** an entity only can own one instane of some kind of component */
+    ECSComponent* getComponentForEntity(const std::string & eId,Entity* entity);
+    
+    /** get all entities which contain some kind of component. */
+    const std::vector<Entity*>* getAllEntitiesPosessingComponent(const std::string& cId);
     
 private:
-    Array* _entities;
-    Dictionary* _componentsByType;    //所有Component组成的字典
+    std::vector<Entity*> _entities;
+    std::map<std::string, std::map<Entity*, ECSComponent*>*> _componentsByType;
+    
+    //for quick find entities every frame.
+    std::map<std::string, std::vector<Entity*>*> _componentEntities;
     int _lowestUnassignedEid;
 };
 

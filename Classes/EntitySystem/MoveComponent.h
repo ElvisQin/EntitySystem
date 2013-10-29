@@ -11,20 +11,19 @@
 
 #include "Component.h"
 
-static const std::string MoveComponentType="MoveComponent";
-
+/** 移动一个元素至指定位置 */
 class MoveComponent:public ECSComponent
 {
 public:
-    virtual const std::string& getComponentType() const{return MoveComponentType;}
+    static const char* MOVE_TYPE;
     
-    MoveComponent* initWithMoveTarget(Point moveTarget,float maxVelocity,float maxAcceleration);
+    static MoveComponent* cretae(Point moveTarget,float acceleration=1);
     
-    Point mMoveTarget;
-    Point mVelocity;
-    Point mAcceleration;
-    float mMaxVelocity;
-    float mMaxAcceleration;
+    Point moveTarget;
+    float acceleration;
+    
+private:
+    MoveComponent(Point moveTarget,float acceleration);
 };
 
 #endif /* defined(__EntitySystem__MoveComponent__) */

@@ -11,14 +11,16 @@
 
 #include "System.h"
 
-class HealthSystem:public System
+class HealthSystem:public ECSSystem
 {
 public:
+    static HealthSystem* create(EntityManager*);
+    
     void draw();
     virtual void update(float dt);
     
 private:
-    void fadeCompleted(CCNode* sender);
+    void fadeCompleted(Node* sender);
 };
 
 #endif /* defined(__ESDemo__HealthSystem__) */

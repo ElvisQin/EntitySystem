@@ -14,24 +14,20 @@
 
 USING_NS_CC;
 
+typedef int32_t entity_id_type;
+
 /**
- * Entity就是一个Id
+ * an Entity means an ID, nothing else.
  */
 class Entity:public Object
 {
 public:
-    typedef std::string entity_id_type;
-    
     static Entity* createWithId(const entity_id_type& id);
-
     const entity_id_type& getId(){return _id;}
-    
     bool operator==(const Entity& entity){return _id==entity._id;}
-    
 private:
     Entity();
     Entity* initWithId(const entity_id_type& id);
-    
 private:
     entity_id_type _id;
 };

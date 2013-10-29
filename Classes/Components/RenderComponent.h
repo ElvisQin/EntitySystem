@@ -14,18 +14,20 @@
 
 USING_NS_CC;
 
-static const std::string  RenderComponentType=std::string("RenderComponent");
-
 class RenderComponent:public ECSComponent
 {
 public:
-    RenderComponent(Sprite* node);
+    static const char* RENDER_TYPE;
     
-    virtual const std::string & getComponentType() const {return RenderComponentType;}
-
-    CCSprite* getNode(){return mNode;}
+    static RenderComponent* create(Node*);
+    
+    Node* getNode(){return _node;}
+    
 private:
-    CCSprite* mNode;
+    RenderComponent(Node* node);
+
+private:
+    Node* _node;
 };
 
 #endif /* defined(__ESDemo__RenderComponent__) */

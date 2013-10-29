@@ -13,10 +13,15 @@
 #include "cocos2d.h"
 #include "Entity.h"
 
-class CollisionEvent:public Event
+/**
+ * when two Entity collide each other.
+ */
+class CollisionEvent:public EventCustom
 {
 public:
-    CollisionEvent(Entity& l,Entity& r);
+    static const char* COLLISION_EVENT_TYPE;
+    
+    CollisionEvent(Entity* l,Entity* r);
     
     Entity* getLeft(){return _left;}
     Entity* getRight(){return _right;}

@@ -7,8 +7,12 @@
 //
 
 #include "CollisionEvent.h"
-CollisionEvent::CollisionEvent(Entity& l,Entity& r)
+
+const char* CollisionEvent::COLLISION_EVENT_TYPE="CollisionEventType";
+
+CollisionEvent::CollisionEvent(Entity* l,Entity* r)
+:EventCustom(CollisionEvent::COLLISION_EVENT_TYPE)
 {
-    _left=&l;
-    _right=&r;
+    _left=l;
+    _right=r;
 }

@@ -12,25 +12,20 @@
 #include "cocos2d.h"
 #include "Component.h"
 
-static const std::string HealthComponentType=std::string("HealthComponent");
-
 class HealthComponent:public ECSComponent
 {
 public:
-    HealthComponent(float curHP,float maxHP);
+    float curHP;
+    float maxHP;
+    bool alive;
+    bool needHPBar;
     
-    virtual const std::string& getComponentType()
-        const {return HealthComponentType;};
+public:
+    static const char* HEALTH_TYPE;
+    static HealthComponent* create(float curHP,float maxHP,bool needBar=true);
 
-    float getCurHP(){return mCurHP;}
-    float getMaxHP(){return mMaxHP;}
-    bool getAlive(){return mAlive;}
-    void setAlive(bool alive){mAlive=alive;}
-
-private:
-    float mCurHP;
-    float mMaxHP;
-    bool mAlive;
+protected:
+    HealthComponent();
 };
 
 

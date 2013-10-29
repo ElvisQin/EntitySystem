@@ -10,117 +10,136 @@
 
 EntityManager::EntityManager()
 {
-    _entities=CCArray::create();
-    _entities->retain();
-    _componentsByType=CCDictionary::create();
-    _componentsByType->retain();
+    _entities.reserve(50);
     _lowestUnassignedEid=1;
 }
 
 EntityManager::~EntityManager()
 {
-    CC_SAFE_RELEASE(_entities);
-    CC_SAFE_RELEASE(_componentsByType);
+    //clear data
 }
 
-int EntityManager::generateNewEid()
+entity_id_type EntityManager::generateNewEid()
 {
-    if (_lowestUnassignedEid < UINT32_MAX)
-    {
+    if (_lowestUnassignedEid < UINT32_MAX) {
         return _lowestUnassignedEid++;
     }
-    else
-    {
-        for (uint32_t i = 1; i < UINT32_MAX; ++i)
-        {
-            if (!_entities->containsObject(CCString::createWithFormat("%d",i)))
-            {
+    else {
+        for (entity_id_type i = 1; i < UINT32_MAX; ++i){
+            Entity* entity=Entity::createWithId(i);
+            if (std::find(_entities.begin(), _entities.end(),entity)==_entities.end()) {
+                //not contain i,means i been deleted.
+                delete entity;
                 return i;
             }
+            delete entity;
         }
-
-        return 0;
     }
+
+    return 0;
 }
 
 Entity* EntityManager::createEntity()
 {
-    String* id=CCString::createWithFormat("%d",generateNewEid());
-    _entities->addObject(id);
-    return Entity::createWithId(id->getCString());
+    entity_id_type id=generateNewEid();
+    Entity* entity=Entity::createWithId(id);
+    _entities.push_back(entity);
+    return entity;
 }
 
 void EntityManager::addComponentToEntity(ECSComponent* component,Entity* entity)
 {
-    if(!component||!entity)
-    {
+    if(component==nullptr||entity==nullptr){
         return;
     }
     
-    //每个类型的Component单独存放一个字典
-    Dictionary* components=(Dictionary*)_componentsByType->objectForKey(component->getComponentType());
-    if(!components)
-    {
-        components=CCDictionary::create();
-        _componentsByType->setObject(components, component->getComponentType());
+    std::map<Entity*, ECSComponent*>* entityList = nullptr;
+    auto components=_componentsByType.find(component->getType());
+    if (components==_componentsByType.end()) {
+        entityList =new std::map<Entity*, ECSComponent*>();
+        _componentsByType.insert(std::make_pair(component->getType(), entityList));
+    }
+    else {
+        entityList=components->second;
+    }
+    //an entity only can own one instane of some kind of component.
+    entityList->insert(std::make_pair(entity, component));
+    
+
+    std::vector<Entity*>* componentEntities;
+    auto entities=_componentEntities.find(component->getType());
+    if (entities==_componentEntities.end()) {
+        componentEntities=new std::vector<Entity*>();
+        _componentEntities.insert(std::make_pair(component->getType(), componentEntities));
+    }
+    else{
+        componentEntities=entities->second;
     }
     
-    //同一Component在Entity中只能有一个实例
-    components->setObject(component, entity->getId());
+    componentEntities->insert(componentEntities->begin(), entity);
 }
 
-Component* EntityManager::getComponentForEntity(const std::string& cId,Entity* entity)
+ECSComponent* EntityManager::getComponentForEntity(const std::string& cId,Entity* entity)
 {
-    Dictionary* dicEntities=(Dictionary*)_componentsByType->objectForKey(cId);
-    if(dicEntities)
-    {
-        std::string key=entity->getId();
-        Object* value=dicEntities->objectForKey(key);
-        
-        return (Component*)value;
+    if (cId.empty()||entity==nullptr) {
+        return nullptr;
     }
     
-    return NULL;
+    auto components=_componentsByType.find(cId);
+    if (components!=_componentsByType.end()) {
+        std::map<Entity*, ECSComponent*>* entityDic =components->second;
+        auto entities=entityDic->find(entity);
+        if (entities!=entityDic->end()) {
+            return entities->second;
+        }
+    }
+    
+    return nullptr;
 }
 
 void EntityManager::removeEntity(Entity* entity)
 {
-    Array* keys=_componentsByType->allKeys();
-    if(!keys)
-    {
+    if (entity==nullptr) {
         return;
     }
     
-    std::string key=entity->getId();
-    for (int i=0; i<keys->count(); i++)
-    {
-        Dictionary* dict=(Dictionary*)_componentsByType->objectForKey(((String*)keys->objectAtIndex(i))->getCString());
-        if(dict&&dict->objectForKey(key))
-        {
-            dict->removeObjectForKey(key);
+    //delete all components
+    for (auto iter=_componentsByType.begin(); iter!=_componentsByType.end();++iter) {
+        for (auto itemIter=iter->second->begin(); itemIter!=iter->second->end();++itemIter) {
+            if (itemIter->first==entity) {
+                //delete component of entity
+                delete itemIter->second;
+                iter->second->erase(entity);
+                break;
+            }
         }
     }
     
-    _entities->removeObject(CCString::create(key));
+    //remove from _componentEntities
+    for (auto iter=_componentEntities.begin(); iter!=_componentEntities.end(); ++iter) {
+        for (auto itemIter=iter->second->begin(); itemIter!=iter->second->end(); ++itemIter) {
+            if((*itemIter)==entity) {
+                iter->second->erase(std::find(iter->second->begin(), iter->second->end(), entity));
+                break;
+            }
+        }
+    }
+    
+    //remove from _entities
+    _entities.erase(std::find(_entities.begin(), _entities.end(), entity));
+    delete entity;
 }
 
-Array* EntityManager::getAllEntitiesPosessingComponent(const std::string& cId)
+const std::vector<Entity*>* EntityManager::getAllEntitiesPosessingComponent(const std::string& cId)
 {
-    Dictionary* components=(Dictionary*)_componentsByType->objectForKey(cId);
-    if(components)
-    {
-        //所有Entity的e_id_type
-        Array* keys=components->allKeys();
-        Array* retval=CCArray::createWithCapacity(keys->count());
-        for (int i=0; i<keys->count(); i++)
-        {
-            Entity* e=Entity::createWithId(((String*)keys->objectAtIndex(i))->getCString());
-            
-            retval->addObject(e);
-        }
-        
-        return retval;
+    if (cId.empty()) {
+        return nullptr;
     }
     
-    return NULL;
+    auto entities=_componentEntities.find(cId);
+    if (entities!=_componentEntities.end()&&entities->second->size()>0) {
+        return entities->second;
+    }
+    
+    return nullptr;
 }

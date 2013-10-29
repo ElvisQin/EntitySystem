@@ -11,9 +11,10 @@
 
 #include "System.h"
 
-class RenderSystem:public System
+class RenderSystem:public ECSSystem
 {
 public:
+    static RenderSystem* create(EntityManager*);
 };
 
 #endif /* defined(__ESDemo__RenderSystem__) */

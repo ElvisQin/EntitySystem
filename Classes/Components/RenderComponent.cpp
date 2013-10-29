@@ -7,7 +7,22 @@
 //
 
 #include "RenderComponent.h"
-RenderComponent::RenderComponent(CCSprite* node)
+
+const char* RenderComponent::RENDER_TYPE="RenderComponent";
+
+RenderComponent* RenderComponent::create(Node* node)
 {
-    mNode=node;
+    RenderComponent* com=new RenderComponent(node);
+    if(com){
+        return com;
+    }
+    
+    CC_SAFE_RELEASE(com);
+    return NULL;
+}
+
+RenderComponent::RenderComponent(Node* node)
+:ECSComponent(RenderComponent::RENDER_TYPE)
+{
+    _node=node;
 }

@@ -15,8 +15,7 @@ Entity::Entity()
 Entity* Entity::createWithId(const entity_id_type& id)
 {
     Entity* entity=new Entity();
-    if(entity)
-    {
+    if(entity){
         entity->initWithId(id);
         return entity;
     }

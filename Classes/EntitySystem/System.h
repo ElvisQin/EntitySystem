@@ -14,11 +14,13 @@
 
 USING_NS_CC;
 
-class System:public Object
+class ECSSystem:public Object
 {
-public:
-    System();
+protected:
+    ECSSystem();
     void initWithManager(EntityManager*);
+    
+public:
     virtual void configure(){};
     virtual void update(float dt){};
     

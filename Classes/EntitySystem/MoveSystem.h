@@ -16,12 +16,14 @@
 
 USING_NS_CC;
 
-class MoveSystem:public System
+/** move an entity to a target position
+ * the entity will be clear if it get to the target position.
+ */
+class MoveSystem:public ECSSystem
 {
 public:
-    CCPoint arriveEntity(Entity* entity,MoveComponent* move,RenderComponent* render);
-    CCPoint separateEntity(Entity* entity,MoveComponent* move,RenderComponent* render);
-    
+    static MoveSystem* create(EntityManager*);
+
     virtual void update(float dt);
 };
 

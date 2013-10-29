@@ -7,13 +7,16 @@
 //
 
 #include "System.h"
-System::System()
+ECSSystem::ECSSystem()
 :_entityManager(NULL)
 {
     
 }
 
-void System::initWithManager(EntityManager* entityManager)
+void ECSSystem::initWithManager(EntityManager* entityManager)
 {
     _entityManager=entityManager;
+    
+    //configure event
+    configure();
 }
