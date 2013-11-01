@@ -76,7 +76,7 @@ void GameOverSystem::showResult(bool result)
         label=Label::createWithTTF("You Win", "fonts/Marker Felt.ttf", 100);
     }
     else{
-        label=Label::createWithTTF("You Lost", "fonts/Marker Felt.ttf", 100);
+        label=Label::createWithTTF("defeated", "fonts/Marker Felt.ttf", 100);
     }
     label->setAnchorPoint(Point(0.5, 0.5));
     label->setColor(Color3B::GREEN);
