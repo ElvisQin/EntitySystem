@@ -1,6 +1,5 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
-#include "AppMacros.h"
 
 USING_NS_CC;
 
@@ -15,12 +14,12 @@ AppDelegate::~AppDelegate()
 bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
     auto director = Director::getInstance();
-    auto eglView = EGLView::getInstance();
+    auto glview = director->getOpenGLView();
+    if(!glview) {
+        glview = GLView::create("My Game");
+        director->setOpenGLView(glview);
+    }
 
-    director->setOpenGLView(eglView);
-	
-    eglView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::FIXED_HEIGHT);
-    
     // turn on display FPS
     director->setDisplayStats(true);
 
