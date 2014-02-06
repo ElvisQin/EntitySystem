@@ -18,8 +18,7 @@ Feature
 3. it's data-driven.
 4. better performance,we make every Entity has it's own System instance,but still keep auto-attaching,you do not need care about System.
 5. lua and javascript binding support.(progress....)
-6. aysnc supported in System(progress....)
-7. system ordered.
+6. system ordered.
 
 How to use?
 ---------------
