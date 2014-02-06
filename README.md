@@ -13,13 +13,13 @@ then put the 'cocos2d' directory from the Cocos2d-x sourcecode into the position
 
 Feature
 ---------
-1. Based on the Origin Entity Component System idea(Decoupbe the system from component,this make it diff from Component-based design).
-2. Automatic attching system to Entity,you only need concern component.So,
-3. It's data-driven.
-4. Better performance,we make every Entity has it's own System instance,but still keep auto-attaching,you do not need care about System.
+1. based on the Origin Entity Component System idea(Decoupbe the system from component,this make it diff from Component-based design).
+2. automatic attching system to Entity,you only need concern component.So,
+3. it's data-driven.
+4. better performance,we make every Entity has it's own System instance,but still keep auto-attaching,you do not need care about System.
 5. lua binding support.(progress....)
 6. aysnc supported in System(progress....)
-
+7. system ordered.
 
 How to use?
 ---------------
