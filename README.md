@@ -5,7 +5,7 @@ An Entity Component System framework based on Cocos2d-x, now the supported versi
 
 How to run?
 -------------
-You need download the Cocos2d-x 3.0 beta2 sourcecode from the offcial repository,please fllow this link:
+You need download the Cocos2d-x 3.0 beta2 sourcecode from the offcial repository, please follow this link:
 https://github.com/cocos2d/cocos2d-x 
 
 then put the 'cocos2d' directory from the Cocos2d-x sourcecode into the position same as 'Classes' directory.
@@ -17,7 +17,7 @@ Feature
 2. automatic attching system to Entity,you only need concern component.So,
 3. it's data-driven.
 4. better performance,we make every Entity has it's own System instance,but still keep auto-attaching,you do not need care about System.
-5. lua binding support.(progress....)
+5. lua and javascript binding support.(progress....)
 6. aysnc supported in System(progress....)
 7. system ordered.
 
