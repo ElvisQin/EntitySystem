@@ -291,5 +291,11 @@ void ECSManager::removeSystem(System* system)
 
 void ECSManager::update(float dt)
 {
-    
+    for (auto iter=_entitySystems.begin(); iter!=_entitySystems.end(); iter++) {
+        for (auto iter1=iter->second->begin(); iter1!=iter->second->end(); iter1++) {
+            if (!(*iter1)->_isFree) {
+                (*iter1)->update(dt);
+            }
+        }
+    }
 }
