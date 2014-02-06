@@ -3,15 +3,25 @@ Welcome
 An Entity Component System framework based on Cocos2d-x, now the supported version is 3.0 beta2.
 
 
-1,how to run?
+How to run?
 -------------
-you need download the Cocos2d-x 3.0 beta2 sourcecode from the offcial repository,please fllow this link:
+You need download the Cocos2d-x 3.0 beta2 sourcecode from the offcial repository,please fllow this link:
 https://github.com/cocos2d/cocos2d-x 
 
 then put the 'cocos2d' directory from the Cocos2d-x sourcecode into the position same as 'Classes' directory.
 
 
-2,how to use?
+Feature
+---------
+1. Based on the Origin Entity Component System idea(Decoupbe the system from component,this make it diff from Component-based design).
+2. Automatic attching system to Entity,you only need concern component.So,
+3. It's data-driven.
+4. Better performance,we make every Entity has it's own System instance,but still keep auto-attaching,you do not need care about System.
+5. lua binding support.(progress....)
+6. aysnc supported in System(progress....)
+
+
+How to use?
 ---------------
 1. create an Entity: ECSmanager::createEntity(); 
 2. create you own Component which should be a subclass of ECS::Component , such as 'MyComponent'
@@ -23,10 +33,10 @@ then put the 'cocos2d' directory from the Cocos2d-x sourcecode into the position
 8. that's it!
   
   
-3,discussion
+Discussion
 -------------
 you may leave a message at my blog: http://elvisco.de
 
 
-4,please enjoy this.
+Please enjoy this.
 -------------------
