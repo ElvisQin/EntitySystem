@@ -1,3 +1,7 @@
+Hi,this project will not be maintained because I have started a new open source project named Genius-x. Genius-x has all features about ECS, moreover, it  will add more features such as FTUE,task system, custom format resources management and load synchronous. Please refer to: http://genius-x.org 
+==========
+
+
 Welcome
 ==========
 An Entity Component System framework based on Cocos2d-x, now the supported version is 3.0 beta2.
